@@ -1,14 +1,14 @@
 # fluent-keen-plugin
 
-[Keen IO](https://keen.io) is an analytics API for modern developers. Track any event: signups, upgrades, impressions,
+> [Keen IO](https://keen.io) is an analytics API for modern developers. Track any event: signups, upgrades, impressions,
 purchases, powerups, errors, shares… Use Keen IO to embed analytics in your site or white label analytics for your
 customers. Keen IO is your new, lovingly crafted, massively scalable, event data backend in the cloud.
 
-[Fluentd](http://www.fluentd.org) is an open source data collector for unified logging layer that allows you to unify
+> [Fluentd](http://www.fluentd.org) is an open source data collector for unified logging layer that allows you to unify
 data collection and consumption for a better use and understanding of data.
 
 This plugin allows you to send data through a Fluent instance to the Keen API. The data will be buffered and slightly
-delayed when it goes into Keen, but it'll reliably scale as spikes of incoming events.
+delayed when it goes into Keen, but it'll reliably scale as spikes of incoming events come flooding in!
 
 **Note:** This is a first production Ruby project, however it is in production use for
 [Car Throttle](https://www.carthrottle.com), and of course we welcome any and all feedback and/or pull-requests! :wink:
