@@ -109,7 +109,8 @@ analytics.emit('carthrottle.post_created', {
 
 So, what will actually happen here?
 
-- `fluent-logger` will concatenate this tag to create `analytics.carthrottle.post_created`
+- [`fluent-logger`](https://www.npmjs.com/package/fluent-logger) will concatenate this tag to create
+  `analytics.carthrottle.post_created`
 - fluentd will receive it and buffer it as you specify
 - This plugin will make a HTTP POST request to a URL similar to:
   `https://api.keen.io/3.0/projects/PROJECT_ID/events/post_created?api_key=WRITE_KEY`
