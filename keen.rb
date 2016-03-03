@@ -40,15 +40,11 @@ module Fluent
         @api_url = 'https://api.keen.io/3.0/projects'
         @project_id = project_id
         @write_key = write_key
+
+        @log_events = []
       end
 
       def post(payload)
-        debug_on = false
-        debug_on = true if @debug_keen
-        debug_on = true if (!!@log_events and @log_events.include?(payload['tag']))
-
-        log.info 'Processing tag ' + payload['tag'] + ' : ' + payload['time'].to_s if debug_on
-
         url = URI.parse('%s/%s/events' % [
           @api_url,
           @project_id
@@ -69,18 +65,24 @@ module Fluent
         if debug_on
           log.info 'Sending:'
           payload.each do |tag, events|
-            log.info '- ' + events.length + ' ' + tag
+            if @log_events.length > 0
+              if @log_events.include?(tag)
+                log.info '- ' + events.length + ' ' + tag
+              end
+            else
+              log.info '- ' + events.length + ' ' + tag
+            end
           end
         end
 
         #log.info url if debug_on
         #log.info headers if debug_on
-        #log.info payload['record'] if debug_on
+        #log.info payload.to_json if debug_on
 
         res = http.post(url.request_uri, payload.to_json, headers)
         raise Error.new(res, payload) unless res.code == '201'
 
-        log.info 'Sent tag ' + payload['tag'] + ' : ' + payload['time'].to_s if debug_on
+        log.info 'Sent batch!' if debug_on
       end
 
     end
