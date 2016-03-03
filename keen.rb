@@ -33,15 +33,13 @@ module Fluent
     # It's designed to live as long as the Fluent instances runs for
     #
     class Request
-      attr_accessor :debug_keen, :log, :log_events
+      attr_accessor :debug_keen, :log
       attr_reader :api_url, :project_id, :write_key
 
       def initialize(project_id, write_key)
         @api_url = 'https://api.keen.io/3.0/projects'
         @project_id = project_id
         @write_key = write_key
-
-        @log_events = []
       end
 
       def post(payload)
@@ -65,13 +63,7 @@ module Fluent
         if @debug_keen
           log.info 'Sending:'
           payload.each do |tag, events|
-            if @log_events.length > 0
-              if @log_events.include?(tag)
-                log.info '- ' + events.length.to_s + ' ' + tag
-              end
-            else
-              log.info '- ' + events.length.to_s + ' ' + tag
-            end
+            log.info '- ' + events.length.to_s + ' ' + tag
           end
         end
 
@@ -111,11 +103,6 @@ module Fluent
     desc 'If specified, this plugin will print debug information'
     config_param :debug_keen, :bool, default: false
 
-    desc 'If specified, the state of these logs will be printed in the fluent log when processed'
-    config_param :log_events, default: nil do |val|
-      val.split(',')
-    end
-
     def configure(conf)
       super
 
@@ -130,10 +117,9 @@ module Fluent
       @request.log = $log
 
       @request.debug_keen = @debug_keen
-      @request.log_events = @log_events if @log_events
-
-      $log.info "Keen: Connected"
       $log.info "Keen: debug_keen has been enabled" if @debug_keen
+
+      $log.info "Keen: Ready"
     end
 
     def shutdown
