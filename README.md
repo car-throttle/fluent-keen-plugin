@@ -132,50 +132,28 @@ being sent and how many events are being sent too.
   project_id 43641d36d5887ba8a82cb294e4daba04
   write_key 8347c97712a4b980d4dc5e3ca7a48245623f9340ceabc2c282f4174f9f9b5589e8f9c04bce419b1aa2ddb89122fa93b3
   debug_keen true
+  flush_interval 5s
 </match>
 ```
 
 Your output will look similar to:
 
 ```
-2016-03-03 11:34:29 +0000 [info]: Keen: Connected
 2016-03-03 11:34:29 +0000 [info]: Keen: debug_keen has been enabled
+2016-03-03 11:34:29 +0000 [info]: Keen: Ready
 2016-03-03 11:34:30 +0000 [info]: listening fluent socket on 0.0.0.0:24224
 2016-03-03 11:34:35 +0000 [info]: Sending:
 2016-03-03 11:34:35 +0000 [info]: - 166 post_created
 2016-03-03 11:34:35 +0000 [info]: - 7 profile_view
 2016-03-03 11:34:36 +0000 [info]: Sent batch!
 2016-03-03 11:34:40 +0000 [info]: Sending:
-2016-03-03 11:34:40 +0000 [info]: - 5 post_created
+2016-03-03 11:34:40 +0000 [info]: - 148 post_created
 2016-03-03 11:34:40 +0000 [info]: - 1 profile_view
 2016-03-03 11:34:40 +0000 [info]: Sent batch!
 2016-03-03 11:34:45 +0000 [info]: Sending:
-2016-03-03 11:34:45 +0000 [info]: - 7 post_created
-2016-03-03 11:34:45 +0000 [info]: - 1 profile_view
+2016-03-03 11:34:45 +0000 [info]: - 157 post_created
+2016-03-03 11:34:45 +0000 [info]: - 4 profile_view
 2016-03-03 11:34:45 +0000 [info]: Sent batch!
-2016-03-03 11:34:50 +0000 [info]: Sending:
-2016-03-03 11:34:50 +0000 [info]: - 11 post_created
-2016-03-03 11:34:50 +0000 [info]: - 1 profile_view
-2016-03-03 11:34:50 +0000 [info]: Sent batch!
-2016-03-03 11:34:55 +0000 [info]: Sending:
-2016-03-03 11:34:55 +0000 [info]: - 8 post_created
-2016-03-03 11:34:55 +0000 [info]: - 2 profile_view
-2016-03-03 11:34:55 +0000 [info]: Sent batch!
-2016-03-03 11:35:00 +0000 [info]: Sending:
-2016-03-03 11:35:00 +0000 [info]: - 11 post_created
-2016-03-03 11:35:01 +0000 [info]: Sent batch!
-2016-03-03 11:35:05 +0000 [info]: Sending:
-2016-03-03 11:35:05 +0000 [info]: - 14 post_created
-2016-03-03 11:35:06 +0000 [info]: Sent batch!
-2016-03-03 11:35:10 +0000 [info]: Sending:
-2016-03-03 11:35:10 +0000 [info]: - 5 post_created
-2016-03-03 11:35:11 +0000 [info]: Sent batch!
-2016-03-03 11:35:15 +0000 [info]: Sending:
-2016-03-03 11:35:15 +0000 [info]: - 4 post_created
-2016-03-03 11:35:16 +0000 [info]: Sent batch!
-2016-03-03 11:35:20 +0000 [info]: Sending:
-2016-03-03 11:35:20 +0000 [info]: - 8 post_created
-2016-03-03 11:35:21 +0000 [info]: Sent batch!
 ```
 
 ## Changelog
