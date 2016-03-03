@@ -62,7 +62,7 @@ module Fluent
           'User-Agent' => 'fluent-plugin-keen'
         }
 
-        if debug_on
+        if @debug_keen
           log.info 'Sending:'
           payload.each do |tag, events|
             if @log_events.length > 0
@@ -82,7 +82,7 @@ module Fluent
         res = http.post(url.request_uri, payload.to_json, headers)
         raise Error.new(res, payload) unless res.code == '201'
 
-        log.info 'Sent batch!' if debug_on
+        log.info 'Sent batch!' if @debug_keen
       end
 
     end
