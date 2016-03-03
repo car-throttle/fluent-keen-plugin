@@ -80,7 +80,7 @@ module Fluent
         #log.info payload.to_json if debug_on
 
         res = http.post(url.request_uri, payload.to_json, headers)
-        raise Error.new(res, payload) unless res.code == '201'
+        raise Error.new(res, payload) unless res.code == '200'
 
         log.info 'Sent batch!' if @debug_keen
       end
