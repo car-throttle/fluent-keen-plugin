@@ -113,14 +113,23 @@ module Fluent
 
       raise ConfigError, '"project_id" parameter is required for keen' unless @project_id
       raise ConfigError, '"write_key" parameter is required for keen' unless @write_key
+    end
 
-      $log.info "debug_keen has been enabled" if @debug_keen
+    def start
+      super
 
       @request = Fluent::KeenClient::Request.new(project_id, write_key)
       @request.log = $log
 
       @request.debug_keen = @debug_keen
       @request.log_events = @log_events if @log_events
+
+      $log.info "Keen: Connected"
+      $log.info "Keen: debug_keen has been enabled" if @debug_keen
+    end
+
+    def shutdown
+      super
     end
 
     def format(tag, time, record)
