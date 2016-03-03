@@ -67,10 +67,10 @@ module Fluent
           payload.each do |tag, events|
             if @log_events.length > 0
               if @log_events.include?(tag)
-                log.info '- ' + events.length + ' ' + tag
+                log.info '- ' + events.length.to_s + ' ' + tag
               end
             else
-              log.info '- ' + events.length + ' ' + tag
+              log.info '- ' + events.length.to_s + ' ' + tag
             end
           end
         end
