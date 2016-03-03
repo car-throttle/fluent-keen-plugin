@@ -60,7 +60,7 @@ module Fluent
 
         headers = {
           'Accept' => 'application/json',
-          'Authorization' => @write_key
+          'Authorization' => @write_key,
           'Content-Type' => 'application/json',
           'Host' => url.host,
           'User-Agent' => 'fluent-plugin-keen'
