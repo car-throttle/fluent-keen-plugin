@@ -78,9 +78,8 @@ added to Keen.
 
 This plugin supports buffering too, so adding any of the standard
 [buffer parameters](http://docs.fluentd.org/articles/buffer-plugin-overview) is also supported. `file` buffers seem to
-be the best, because they persist if the process is restarted! It is worth mentioning that although this plugin supports
-buffering it does not use the multiple events API endpoint that is
-[described here](https://keen.io/docs/api/#record-multiple-events)
+be the best, because they persist if the process is restarted! Once buffered the data will be sent in batches using the
+Keen [multiple events API](https://keen.io/docs/api/#record-multiple-events) rather than one HTTP request per event.
 
 ## Usage
 
