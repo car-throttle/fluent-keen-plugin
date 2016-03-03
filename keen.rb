@@ -49,11 +49,9 @@ module Fluent
 
         log.info 'Processing tag ' + payload['tag'] + ' : ' + payload['time'].to_s if debug_on
 
-        url = URI.parse('%s/%s/events/%s?api_key=%s' % [
+        url = URI.parse('%s/%s/events' % [
           @api_url,
-          @project_id,
-          payload['tag'],
-          @write_key
+          @project_id
         ])
 
         http = Net::HTTP.new(url.host, url.port)
@@ -62,16 +60,24 @@ module Fluent
 
         headers = {
           'Accept' => 'application/json',
+          'Authorization' => @write_key
           'Content-Type' => 'application/json',
           'Host' => url.host,
           'User-Agent' => 'fluent-plugin-keen'
         }
 
+        if debug_on
+          log.info 'Sending:'
+          payload.each do |tag, events|
+            log.info '- ' + events.length + ' ' + tag
+          end
+        end
+
         #log.info url if debug_on
         #log.info headers if debug_on
         #log.info payload['record'] if debug_on
 
-        res = http.post(url.request_uri, payload['record'], headers)
+        res = http.post(url.request_uri, payload.to_json, headers)
         raise Error.new(res, payload) unless res.code == '201'
 
         log.info 'Sent tag ' + payload['tag'] + ' : ' + payload['time'].to_s if debug_on
@@ -138,17 +144,15 @@ module Fluent
 
     def write(chunk)
       begin
-        payloads = []
+        events = {}
 
         chunk.msgpack_each do |tag, time, record|
-          payloads << {
-            'tag' => tag.split('.').last,
-            'time' => time,
-            'record' => JSON.dump(record)
-          }
+          event_tag = tag.split('.').last
+          events[event_tag] ||= []
+          events[event_tag] << record
         end
 
-        payloads.each {|payload| @request.post(payload) }
+        @request.post(events);
       rescue Timeout::Error => e
         log.warn 'keen:', :error => e.to_s, :error_class => e.class.to_s
         raise e # and let Fluentd retry
