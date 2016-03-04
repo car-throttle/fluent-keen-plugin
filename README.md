@@ -1,4 +1,4 @@
-# fluent-keen-plugin
+# fluent-plugin-keen
 
 > [Keen IO](https://keen.io) is an analytics API for modern developers. Track any event: signups, upgrades, impressions,
 purchases, powerups, errors, shares… Use Keen IO to embed analytics in your site or white label analytics for your
@@ -16,7 +16,7 @@ delayed when it goes into Keen, but it'll reliably scale as spikes of incoming e
 **Also:** Various paths in this README point to `/etc/td-agent` rather than a `fluentd` folder since in production we're
 using `td-agent`, which is the [stable packaged edition](http://docs.fluentd.org/articles/install-by-deb) of fluent.
 
-**Finally,** this was inspired by the amazing [fluent-slack-plugin](https://github.com/sowawa/fluent-plugin-slack),
+**Finally,** this was inspired by the amazing [fluent-plugin-slack](https://github.com/sowawa/fluent-plugin-slack),
 which is also used in production for [Car Throttle](https://www.carthrottle.com) to notify us if Fluent encounters
 issues!
 
@@ -25,8 +25,8 @@ issues!
 Right now this plugin can't be downloaded via RubyGems, so the quickest way is to install with git:
 
 ```
-git clone https://github.com/car-throttle/fluent-keen-plugin
-ln -s fluent-keen-plugin/keen.rb /etc/td-agent/plugins/keen.rb
+git clone https://github.com/car-throttle/fluent-plugin-keen
+ln -s fluent-plugin-keen/keen.rb /etc/td-agent/plugins/keen.rb
 ```
 
 ## Configuration
@@ -121,7 +121,7 @@ So, what will actually happen here?
 
 ## Debugging
 
-If you add `debug_keen true` to your fluent-keen-plugin config block, you'll be able to see debug information for your
+If you add `debug_keen true` to your fluent-plugin-keen config block, you'll be able to see debug information for your
 events as they are sent to Keen. This is useful for confirming your setup is working, as well as seeing what events are
 being sent and how many events are being sent too.
 
@@ -167,5 +167,5 @@ Your output will look similar to:
 
 ## Questions
 
-Great! [Open an issue](https://github.com/car-throttle/fluent-keen-plugin) or feel free to
+Great! [Open an issue](https://github.com/car-throttle/fluent-plugin-keen/issues) or feel free to
 [tweet JJ](https://twitter.com/jdrydn) and we'll get back to you!
