@@ -49,6 +49,7 @@ module Fluent
         ])
 
         http = Net::HTTP.new(url.host, url.port)
+        http.read_timeout = 120
         http.use_ssl = (url.scheme == 'https')
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
