@@ -114,7 +114,7 @@ So, what will actually happen here?
   `analytics.carthrottle.post_created`
 - fluentd will receive it and buffer it as you specify
 - This plugin will make a HTTP POST request to a URL similar to:
-  `https://api.keen.io/3.0/projects/PROJECT_ID/events`
+  `https://api.keen.io/3.0/projects/PROJECT_ID/events`  
   (As specified in the Keen docs: https://keen.io/guides/getting-started/)
 - If a response other than a 201 is returned, an error will be outputted to the fluentd logs (and to Slack, because of
   that fluent-slack-plugin) with appropriate information to assist in debugging
